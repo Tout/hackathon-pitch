@@ -13,11 +13,17 @@
                 background: -ms-radial-gradient(center, circle cover, rgb(0,153,254) 0%, #1c1e20 100%);
                 background: radial-gradient(center, circle cover, rgb(0,153,254) 0%, #1c1e20 100%);
             }
-            .reveal .slides section > img#tout-logo {
+            .reveal .slides ul {
+                list-style-type: none;
+                margin-top:20px;
+            }
+            .reveal .slides section > img#tout-logo, .reveal .slides section > img.other-logo {
                 background-color: rgba(0, 0, 0, 0);
-                background-image: none;
-                border: none;
+                background-image: none;                
                 box-shadow: 0 0 0px rgba(0, 0, 0, 0);
+                border: none;
+            }                
+            .reveal .slides section > img#tout-logo {
                 margin-bottom: 50px;
                 margin-top:50px;
             }
@@ -26,13 +32,16 @@
             }
             div#video-problems-list {
                 background-image: url(img/first-world-problems-girl.png);
+                border: 4px solid #eeeeee;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); 
                 width:552px;
                 height:367px;
                 margin:0 auto;
             }
-            ul.me-social {
-                list-style-type: none;
-                margin-top:20px;
+            div#video-problems-list li {
+                color: rgba(255, 255, 255, 0.8); 
+                margin-top:10px;
+                font-size:1.5em;
             }
             ul.me-social li {
                 float: left;
@@ -56,9 +65,11 @@
                     </section>    
                     <section>
                         <h2>Who knows what Twitter is?</h2>
+                        <img class="other-logo" src="img/twitter-logo.png">
                     </section>
                     <section>
                         <h2>Who knows what YouTube is?</h2>
+                        <img class="other-logo" src="img/youtube_logo.png">
                     </section>
                     <section>
                         <h2>Tout...</h2>
@@ -73,11 +84,11 @@
                     <h2>There are problems with video?</h2>
                     <div id="video-problems-list">
                         <ul>
-                            <li>Capturing</li>
-                            <li>Transmitting</li>
-                            <li>Encoding</li>
-                            <li>Deliverability</li>
-                            <li>Playback</li>
+                            <li class="fragment">Capturing</li>
+                            <li class="fragment">Transmitting</li>
+                            <li class="fragment">Encoding</li>
+                            <li class="fragment">Deliverability</li>
+                            <li class="fragment">Playback</li>
                         </ul>    
                     </div>
                 </section>
@@ -92,6 +103,7 @@
 
                 <section>
                     <h2>Prizes :)</h2>
+                    <img src="img/prize.png">
                 </section>
 
                 <section>
