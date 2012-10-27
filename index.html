@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" href="http://localhost/lib/reveal.js/css/reveal.css">
+        <link rel="stylesheet" href="http://localhost/lib/reveal.js/css/theme/default.css" id="theme">
+        <style type="text/css">
+            body {
+                background: #1c1e20;
+                background: -moz-radial-gradient(center, circle cover, rgb(0,153,254) 0%, #1c1e20 100%);
+                background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgb(0,153,254)), color-stop(100%, #1c1e20));
+                background: -webkit-radial-gradient(center, circle cover, rgb(0,153,254) 0%, #1c1e20 100%);
+                background: -o-radial-gradient(center, circle cover, rgb(0,153,254) 0%, #1c1e20 100%);
+                background: -ms-radial-gradient(center, circle cover, rgb(0,153,254) 0%, #1c1e20 100%);
+                background: radial-gradient(center, circle cover, rgb(0,153,254) 0%, #1c1e20 100%);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="reveal">
+			<div class="slides">
+
+				<section>
+					<h1>Reveal.js</h1>
+					<h3>HTML Presentations Made Easy</h3>
+                </section>
+                <section>
+					<h2>Heads Up</h2>
+					<p>
+						reveal.js is a framework for easily creating beautiful presentations using HTML. You'll need a browser with
+						support for CSS 3D transforms to see it in its full glory.
+					</p>
+					<p>
+						<i><small>- <a href="http://hakim.se">Hakim El Hattab</a> / <a href="http://twitter.com/hakimel">@hakimel</a></small></i>
+					</p>
+
+					<aside class="notes">
+						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
+					</aside>
+				</section>
+
+				<section>
+					<section>
+						<h2>Vertical Slides</h2>
+						<p>
+							Slides can be nested inside of other slides,
+							try pressing <a href="#/2/1">down</a>.
+						</p>
+						<a href="#/2/1" class="image">
+							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
+						</a>
+					</section>
+					<section>
+						<h2>Basement Level 1</h2>
+						<p>Press down or up to navigate.</p>
+					</section>
+					<section>
+						<h2>Basement Level 2</h2>
+						<p>Cornify</p>
+						<a class="test" href="http://cornify.com">
+							<img width="280" height="326" src="https://s3.amazonaws.com/hakim-static/reveal-js/cornify.gif" alt="Unicorn">
+						</a>
+					</section>
+					<section>
+						<h2>Basement Level 3</h2>
+						<p>That's it, time to go back up.</p>
+						<a href="#/2" class="image">
+							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="-webkit-transform: rotate(180deg);">
+						</a>
+					</section>
+				</section>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="http://localhost/lib/reveal.js/lib/js/head.min.js"></script>
+        <script type="text/javascript" src="http://localhost/lib/reveal.js/js/reveal.min.js"></script>
+        <script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+				// Optional libraries used to extend on reveal.js
+                /*
+                dependencies: [
+					{ src: 'lib/js/highlight.js', async: true, callback: function() { window.hljs.initHighlightingOnLoad(); } },
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'lib/js/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+                    ]
+                */
+			});
+		</script>
+    </body>
+</html>
