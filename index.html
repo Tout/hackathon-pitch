@@ -112,7 +112,7 @@
                 <section>
                     <section>
                         <h2>How easy is Tout?</h2>
-                        <img id="record-button" class="remove-defaults" src="img/record.png" onClick="function() {window.open('http://www.tout.com/m/new?display=popup', 'recordTout', 'height=450,width=760');}">
+                        <img id="record-button" class="remove-defaults" src="img/record.png" onClick="Deck.recordTout()">
                     </section>
                     <section>
                         <div id="video-problems-list"></div>
@@ -143,6 +143,7 @@
             </div>
         </div>
 
+        <script type="text/javascript" src="lib/jquery.js"></script>
         <script type="text/javascript" src="lib/reveal.js/lib/js/head.min.js"></script>
         <script type="text/javascript" src="lib/reveal.js/js/reveal.min.js"></script>
         <script>
@@ -160,15 +161,65 @@
 				// Optional libraries used to extend on reveal.js
                 
                 dependencies: [
-					{ src: 'lib/js/highlight.js', async: true, callback: function() { window.hljs.initHighlightingOnLoad(); } },
-					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: 'lib/js/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					{ src: 'lib/reveal.js/lib/js/highlight.js', async: true, callback: function() { window.hljs.initHighlightingOnLoad(); } },
+					{ src: 'lib/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'lib/reveal.js/lib/js/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'lib/reveal.js/lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'lib/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'lib/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
                     ]
                
 			});
-		</script>
+        </script>
+        <script>
+            var Deck = (function() {
+                var latestTout, callAjax, getLatestTout, recordTout;
+
+                callAjax = function() {
+                    var ajax_url = 'https://api.tout.com/api/v1/users/jeremiak/touts?access_token=661c8850e011ac97f83889ba5c516eadcecb0e8da6461d14e748afd295a396d9';
+                    
+                    return $.ajax({
+			            url: ajax_url,
+			            async: true
+		            });
+                };
+
+                getLatestTout = function() {
+                    var x;
+                    var whenToutsLoaded = callAjax();
+                    
+                    whenToutsLoaded.done(function (data) {
+                        var touts = data['touts'];
+
+                        if (typeof data['touts'] === 'undefined') {
+                            try {
+                                touts = JSON.parse(data)['touts'];
+                            } catch (err) { console.log(err); }
+                        }
+                        
+                        x = touts[0]['tout']['uid'];
+                    });
+
+                    console.log(x);
+                };
+                
+                recordTout = function() {
+                    window.open('http://www.tout.com/m/new?display=popup', 'recordTout', 'height=420,width=800');
+                };
+
+                return {
+                    latestTout: latestTout,
+                    callAjax: callAjax,
+                    getLatestTout: getLatestTout,
+                    recordTout: recordTout
+                }
+            })();
+
+            $(document).ready(function(){
+                console.log('ready');
+                Deck.getLatestTout();
+
+            });
+        </script>
     </body>
 </html>
