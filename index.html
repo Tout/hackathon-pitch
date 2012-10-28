@@ -51,16 +51,16 @@
             img#record-button {
                 margin-top:85px;
             }
-            ul#sdk-images {
+            ul.horizontal {
                 list-style-type: none;
             }
-            ul#sdk-images li {
+            ul.horizontal li {
                 float: left;
             }
-            ul#sdk-images li img {
+            ul.horizontal li img {
                 width:250px;
             }
-            ul#sdk-images li h4 {
+            ul.horizontal li h4 {
                 text-align:center;
             }
             ul.me-social li {
@@ -138,11 +138,15 @@
 
                 <section>
                     <section>
-                        <h2>What about for mobile?</h2>    
+                        <h2>What about for mobile?</h2>
+                        <ul class="horizontal">
+                            <li><img class="remove-defaults" src="img/apple.png"></li>
+                            <li><img class="remove-defaults" src="img/android.png"></li>
+                        </ul>
                     </section>
                     <section>
                         <h2>Prebuilt Views</h2>
-                        <ul id="sdk-images">
+                        <ul class="horizontal">
                             <li>
                                 <img src="img/ios-sdk-1.png">
                                 <h4>Video capture</h4>
