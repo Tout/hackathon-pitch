@@ -52,6 +52,10 @@
             img#record-button {
                 margin-top:85px;
             }
+            video {
+                border: 4px solid #eeeeee;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+            }
             ul.horizontal {
                 list-style-type: none;
             }
@@ -133,7 +137,11 @@
                         <img id="record-button" class="remove-defaults" src="img/record.png" onClick="Deck.recordTout()">
                     </section>
                     <section>
-                        <div id="video-problems-list"></div>
+                        <div id="fresh-tout">
+                            <video id="fresh-tout-video" class="video-js vjs-default-skin" controls preload="auto" height="480px" width="640px" data-setup="{}">
+                                <source src="http://videos.tout.com/watermark/mp4/a0a7c01c617a1f77e25d920bc0fdbfdf.mp4" type='video/mp4'>
+                            </video>
+                        </div>
                     </section>
                 </section>
 
@@ -194,6 +202,7 @@
         <script type="text/javascript" src="lib/jquery.js"></script>
         <script type="text/javascript" src="lib/reveal.js/lib/js/head.min.js"></script>
         <script type="text/javascript" src="lib/reveal.js/js/reveal.min.js"></script>
+        <script type="text/javascript" src="lib/video.js"></script>
         <script>
 
 			// Full list of configuration options available here:
@@ -223,8 +232,8 @@
             var Deck = (function() {
                 var latestTout, callAjax, getLatestTout, recordTout;
 
-                callAjax = function() {
-                    var ajax_url = 'https://api.tout.com/api/v1/users/jeremiak/touts?access_token=661c8850e011ac97f83889ba5c516eadcecb0e8da6461d14e748afd295a396d9';
+                callAjax = function(api_call) {
+                    var ajax_url = 'https://api.tout.com/api/v1/'+api_call+'?access_token=661c8850e011ac97f83889ba5c516eadcecb0e8da6461d14e748afd295a396d9';
                     
                     return $.ajax({
 			            url: ajax_url,
@@ -234,7 +243,7 @@
 
                 getLatestTout = function() {
                     var x;
-                    var whenToutsLoaded = callAjax();
+                    var whenToutsLoaded = callAjax('users/jeremiak/touts');
                     
                     whenToutsLoaded.done(function (data) {
                         var touts = data['touts'];
@@ -244,20 +253,40 @@
                                 touts = JSON.parse(data)['touts'];
                             } catch (err) { console.log(err); }
                         }
-                        
-                        x = touts[0]['tout']['uid'];
+                   
                     });
 
-                    console.log(x);
+                    
                 };
                 
                 recordTout = function() {
                     window.open('http://www.tout.com/m/new?display=popup', 'recordTout', 'height=420,width=800');
                 };
 
+                checkLatest = function(tout) {
+                    if (tout != 'fool') {
+                        var whenToutsLoaded = callAjax('touts/'+tout);
+                    
+                        whenToutsLoaded.done(function (data) {
+                        var touts = data['tout'];
+
+                        if (typeof data['tout'] === 'undefined') {
+                            try {
+                                touts = JSON.parse(data)['tout'];
+                            } catch (err) { console.log(err); }
+                        }
+                        
+                        latestTout = touts[0]['tout']['image']['poster']['http_url'];
+                        console.log(latestTout);
+                        });               
+
+                    }
+                };
+
                 return {
                     latestTout: latestTout,
                     callAjax: callAjax,
+                    checkLatest: checkLatest,
                     getLatestTout: getLatestTout,
                     recordTout: recordTout
                 }
@@ -265,6 +294,7 @@
 
             $(document).ready(function(){
                 console.log('ready');
+                $('.vjs-controls').css('display', 'none');
                 Deck.getLatestTout();
 
             });
