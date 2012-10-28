@@ -171,7 +171,7 @@
                         </ul>
                     </section>
                     <section>
-                        <h2>Authentication</h2>
+                        <h2>Authentication with OAuth 2.0</h2>
                         <h2>Camera manipulation</h2>
                         <h2>Connectivity</h2>
                         <h2>Tout Editing</h2>
@@ -266,18 +266,21 @@
                 checkLatest = function(tout) {
                     if (tout != 'fool') {
                         var whenToutsLoaded = callAjax('touts/'+tout);
-                    
-                        whenToutsLoaded.done(function (data) {
-                        var touts = data['tout'];
+                            whenToutsLoaded.done(function (data) {
+                            var tout = data['tout'];
 
-                        if (typeof data['tout'] === 'undefined') {
-                            try {
-                                touts = JSON.parse(data)['tout'];
-                            } catch (err) { console.log(err); }
-                        }
-                        
-                        latestTout = touts[0]['tout']['image']['poster']['http_url'];
-                        console.log(latestTout);
+                            if (typeof data['tout'] === 'undefined') {
+                                try {
+                                    touts = JSON.parse(data)['tout'];
+                                } catch (err) { console.log(err); }
+                            }
+
+                            console.log(tout);
+                            latestTout = tout['video']['mp4']['http_url'];
+                            var p = _V_('fresh-tout-video');
+                            p.src(latestTout);
+                            $('.vjs-controls').css('display', 'none');
+                            
                         });               
 
                     }
@@ -295,7 +298,7 @@
             $(document).ready(function(){
                 console.log('ready');
                 $('.vjs-controls').css('display', 'none');
-                Deck.getLatestTout();
+                Deck.checkLatest('4dhfv2');
 
             });
         </script>
