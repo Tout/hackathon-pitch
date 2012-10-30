@@ -266,7 +266,7 @@
                 checkLatest = function(tout) {
                     if (tout != 'fool') {
                         var whenToutsLoaded = callAjax('touts/'+tout);
-                            whenToutsLoaded.done(function (data) {
+                        whenToutsLoaded.done(function (data) {
                             var tout = data['tout'];
 
                             if (typeof data['tout'] === 'undefined') {
@@ -276,12 +276,13 @@
                             }
 
                             console.log(tout);
-                            latestTout = tout['video']['mp4']['http_url'];
+
+                            this.latestTout = tout['video']['mp4']['http_url'];
                             var p = _V_('fresh-tout-video');
-                            p.src(latestTout);
+                            p.src(this.latestTout);
                             $('.vjs-controls').css('display', 'none');
                             
-                        });               
+                        }.bind(this));               
 
                     }
                 };
