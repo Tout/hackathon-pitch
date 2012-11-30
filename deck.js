@@ -2,7 +2,7 @@ var Deck = (function() {
     var latestTout = {'uid': null, 'created_at': new Date(0), 'mp4_url': null}, callAjax, getLatestTout, recordTout;
 
     callAjax = function(api_call) {
-        var ajax_url = 'https://api.tout.com/api/v1/'+api_call+'?access_token=661c8850e011ac97f83889ba5c516eadcecb0e8da6461d14e748afd295a396d9';
+        var ajax_url = 'https://api.tout.com/api/v1/'+api_call+'?access_token=6e2822e5a4cdd50299b75dbe1a6d9be96c08f12b59908eaf49bf09016546bb18';
         
         return $.ajax({
             url: ajax_url,
