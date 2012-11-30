@@ -44,7 +44,7 @@ var Deck = (function() {
     recordTout = function() {
         setTimeout(function() {
             this.getLatestTout();
-            window.location.href = '/#/3/1';
+            window.location.href = window.location.origin + window.location.pathname + '#/3/1';
             //$('#record-button').css('opacity', .6);
         }.bind(this), 60000);
         window.open('http://www.tout.com/m/new?display=popup', 'recordTout', 'height=420,width=800');
