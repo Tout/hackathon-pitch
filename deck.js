@@ -12,7 +12,7 @@ var Deck = (function() {
 
     getLatestTout = function() {
         var x;
-        var whenToutsLoaded = callAjax('users/jeremiak/touts');
+        var whenToutsLoaded = callAjax('me/touts');
         
         whenToutsLoaded.done(function (data) {
             var touts = data['touts'], t;
